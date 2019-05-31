@@ -1,49 +1,70 @@
 public class DrawBox {
-
-    //Use integers between 2 and 100 to draw a reasonable box
-    public static void DrawBox(int height, int width)
+    public static void main(String[] arg)
     {
+        int height = 4;
+        int width = 4;
+        String[][] box = GetBox(height,width);
+        PrintBox(box);
+
+    }
+
+    //Use integers between 2 and 100 to create a reasonable box
+    public static String[][] GetBox(int height, int width)
+    {
+        String[][] box = new String[height][width];
         try {
             if (height < 2 || height > 100 || width < 2 || width > 100) {
                 throw new Exception("Height and width of the box have to be between 2 and 100.");
             }
-
-
             for (int j = 0; j < height; j++) {
                 for (int i = 0; i < width; i++) {
                     if (j == 0) {
                         if (i == 0) {
-                            System.out.print('┌');
+                            box[j][i]="┌";
                         } else if (i == width - 1) {
-                            System.out.println('┐');
+                            box[j][i]="┐\n";
                         } else {
-                            System.out.print('-');
+                            box[j][i]="-";
                         }
 
                     } else if (j == height - 1) {
                         if (i == 0) {
-                            System.out.print('└');
+                            box[j][i]="└";
                         } else if (i == width - 1) {
-                            System.out.println('┘');
+                            box[j][i]="┘\n";
                         } else {
-                            System.out.print('─');
+                            box[j][i]="─";
                         }
                     } else {
                         if (i == 0) {
-                            System.out.print('|');
+                            box[j][i]="|";
                         } else if (i == width - 1) {
-                            System.out.println('|');
+                            box[j][i]="|\n";
                         } else {
-                            System.out.print(' ');
+                            box[j][i]=" ";
                         }
 
                     }
                 }
             }
+            return box;
         }
         catch (Exception e)
         {
             System.out.print(e.getMessage());
+            System.exit(-1);
+            return box;
+        }
+    }
+
+    public static void PrintBox(String[][] box)
+    {
+        for (int j = 0; j < box.length; j ++)
+        {
+            for (int i = 0; i < box[0].length; i++)
+            {
+                System.out.print(box[j][i]);
+            }
         }
     }
 }

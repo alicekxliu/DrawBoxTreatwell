@@ -1,0 +1,49 @@
+public class DrawBox {
+
+    //Use integers between 2 and 100 to draw a reasonable box
+    public static void DrawBox(int height, int width)
+    {
+        try {
+            if (height < 2 || height > 100 || width < 2 || width > 100) {
+                throw new Exception("Height and width of the box have to be between 2 and 100.");
+            }
+
+
+            for (int j = 0; j < height; j++) {
+                for (int i = 0; i < width; i++) {
+                    if (j == 0) {
+                        if (i == 0) {
+                            System.out.print('┌');
+                        } else if (i == width - 1) {
+                            System.out.println('┐');
+                        } else {
+                            System.out.print('-');
+                        }
+
+                    } else if (j == height - 1) {
+                        if (i == 0) {
+                            System.out.print('└');
+                        } else if (i == width - 1) {
+                            System.out.println('┘');
+                        } else {
+                            System.out.print('─');
+                        }
+                    } else {
+                        if (i == 0) {
+                            System.out.print('|');
+                        } else if (i == width - 1) {
+                            System.out.println('|');
+                        } else {
+                            System.out.print(' ');
+                        }
+
+                    }
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.print(e.getMessage());
+        }
+    }
+}

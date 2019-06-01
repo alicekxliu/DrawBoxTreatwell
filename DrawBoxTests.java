@@ -1,32 +1,21 @@
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 public class DrawBoxTests {
-    @Test
-    public void DrawBoxTest() throws FileNotFoundException
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void GetBoxTest()
     {
-        String fileName = "four-three-box.txt";
-        DrawBox.DrawBox(4,3, fileName);
-        int height = 0;
-        File file = new File(fileName);
-        Scanner sc = new Scanner(file);
-        while (sc.hasNextLine())
-        {
-            height++;
-        }
-        sc.close();
-        Assert.assertEquals(height,4);
-
+        String[][] box = DrawBox.GetBox(5,6);
+        Assert.assertEquals("┌",box[0][0]);
+        Assert.assertEquals("-", box[0][4]);
+        Assert.assertEquals("|\n", box[2][5]);
+        Assert.assertEquals(" ", box[3][3]);
+        String s = box[4][7];
 
     }
-
     @Test(expected = Exception.class)
-    public void DrawBoxTestInvalidParameterTests()
+    public void GetBoxInvalidParameterTest()
     {
-        DrawBox.DrawBox(1,1, "file.txt");
+        String[][] box = DrawBox.GetBox(1,1);
     }
 }
